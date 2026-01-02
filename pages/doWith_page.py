@@ -1,4 +1,4 @@
-# login_page.py
+# doWith_page.py
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -66,33 +66,15 @@ class DoWithPage:
         # 点击：すべての画像を表示する
         self.seleniumUtil.click((By.XPATH, "//a[@class='allphoto']"))
 
-        # 1) 切到 iframe
-        self.seleniumUtil.switch_to_frame((By.CSS_SELECTOR, "iframe.gncBoxIframe"), timeout=10)
-
-        self.seleniumUtil.click((By.XPATH, "//div[@class='image-list']//ul//li[3]"))
-
-
+        # 先切 iframe，用来点缩略图
+        self.seleniumUtil.switch_to_frame((By.CSS_SELECTOR, "iframe.designCboxIframe"), timeout=10)
 
         for i in range(count):
             imageElementCnt = "//div[@class='image-list']//ul//li[" + str(i+1) + "]"
             self.seleniumUtil.click((By.XPATH, imageElementCnt))
-            print(imageElementCnt)
-            print(i)
-            self.seleniumUtil.screenshot(get_project_root() / "output/image" + i + "1.png")
-        # self.seleniumUtil.save_gallery_images_in_iframe(
-        #     frame_loc = (By.CSS_SELECTOR, "iframe.gncBoxIframe"),  # 你需要按实际 iframe 改
-        #     thumb_loc = (By.CSS_SELECTOR, "div.image-list li"),  # 右侧缩略图
-        #     big_img_loc = (By.CSS_SELECTOR, "#gazo.currentImg img"),  # 中间大图（按实际 class 改）
-        #     save_dir = get_project_root() / "output" / "case_001",
-        #     prefix="photo",
-        # )
+            # print(imageElementCnt, i)
+            self.seleniumUtil.screenshot(get_project_root() / "output" / "image" / f"{i}.png")
 
-        # self.seleniumUtil.screenshot(get_project_root() / "output/image1.png")
-        time.sleep(100)
+        # time.sleep(100)
 
-
-
-
-if __name__ == "__main__":
-    self.atbbInput()
 
