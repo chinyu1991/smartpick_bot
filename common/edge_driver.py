@@ -1,10 +1,10 @@
 # driver/edge_driver.py
 from selenium import webdriver
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.edge.options import EdgeOptions
+from selenium.webdriver.chrome.options import ChromeOptions
 
 def create_driver(headless: bool = False) -> webdriver.Edge:
-    opt = Options()
+    opt = EdgeOptions()
     opt.add_argument("--window-size=1280,900")
     opt.add_argument("--disable-notifications")
     # 企业系统建议先不用无头，方便你手动登录/过验证码
@@ -16,7 +16,7 @@ def create_driver(headless: bool = False) -> webdriver.Edge:
     return driver
 
 def create_driver_chrome(headless: bool = False) -> webdriver.Chrome:
-    opt = Options()
+    opt = ChromeOptions()
     opt.add_argument("--window-size=1280,900")
     opt.add_argument("--disable-notifications")
 
