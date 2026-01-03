@@ -53,7 +53,7 @@ class DoWithPage:
             print('物件关键字 = ' + out_text)
 
         # 入力：フリーワード検索
-        self.seleniumUtil.input_text((By.XPATH, "//input[@id='freeWordSearchSubject']"), out_text, clear=True)
+        self.seleniumUtil.input_text((By.XPATH, "//input[@id='freeWordSearchSubject']"), out_text, timeout=20, clear=True)
         # 点击：检索
         self.seleniumUtil.click((By.XPATH, '//input[@value="検索"]'))
         # 点击：详细
@@ -74,6 +74,7 @@ class DoWithPage:
             self.seleniumUtil.click((By.XPATH, imageElementCnt))
             # print(imageElementCnt, i)
             self.seleniumUtil.screenshot(get_project_root() / "output" / "image" / f"{i}.png")
+            time.sleep(2)
 
         # time.sleep(100)
 
